@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: SquadMakers Challenge
+  description: This is a collection of edpoints to solve a challenge.
+  contact:
+    email: g.carranzacord@gmail.com
+  version: 0.0.1
+servers:
+  - url: http://127.0.0.1:6000/api
+tags:
+  - name: joke
+    description: A lot of jokes!
+  - name: math
+    description: Some math operations
+paths:
+  /joke:
+    summary: A random joke
+    description: This could return a joke from Chuck or Dad
+    get:
+      summary: A random joke
+      description: This could return a joke from Chuck or Dad jokes providers
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - joke
+    post:
+      summary: Create a custom joke
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - joke
+  /joke/{joke_provider}:
+    summary: A joke from a specific provider
+    get:
+      summary: A joke from a specific provider
+      parameters:
+        - in: path
+          name: joke_provider
+          schema:
+            type: string
+            enum:
+              - chuck
+              - dad
+          required: true
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - joke
+  /joke/{joke_id}:
+    summary: CRUD for a joke
+    put:
+      summary: Update a joke
+      parameters:
+        - in: path
+          name: joke_id
+          schema:
+            type: integer
+            minimum: 1
+          required: true
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - joke
+    delete:
+      summary: Delete a joke
+      parameters:
+        - in: path
+          name: joke_id
+          schema:
+            type: integer
+            minimum: 1
+          required: true
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - joke
+  /math/leastcommonmultiple:
+    summary: Calculate the least common multiple of a given list of numbers.
+    get:
+      summary: Calculate the least common multiple of a given list of numbers
+      parameters:
+        - in: query
+          name: numbers
+          required: true
+          explode: false
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 1
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - math
+  /math/increment:
+    summary: Increment a number by one
+    get:
+      summary: Increment a number by one
+      parameters:
+        - in: query
+          name: number
+          required: true
+          schema:
+            type: integer
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - math
