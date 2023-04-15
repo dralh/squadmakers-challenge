@@ -57,6 +57,11 @@ Instalar projecto
   python setup.py install ".[dev,test]"
 ```
 
+Copiar el archivo de configuracion
+```bash
+  cp config.template.yaml config.yaml
+```
+
 Inicializar la base de datos
 ```bash
   psql -h <host> -p <port> -U postgres < database/create_database.sql
