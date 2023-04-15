@@ -1,0 +1,45 @@
+Version: 1
+Module: squadmakers.challenge.flask_app
+Flask:
+  ENV: local
+  REVERSE_PROXY: true
+  APPLICATION_ROOT: /api/sq-challenge/
+Sqlalchemy:
+  DATABASE_URI: postgresql://sm_admin:pass123@127.0.0.1:5432/sm_challenge?application_name=sm_challenge
+  TRACK_MODIFICATIONS: false
+Logging:
+  version: 1
+  formatters:
+    colored:
+      (): coloredlogs.ColoredFormatter
+      format: "[{asctime}] [{levelname}] {message}"
+      datefmt: '%Y-%m-%d %H:%M:%S'
+      style: "{"
+  filters:
+    leq_info:
+      (): squadmakers.challenge.utils.logging.filters.LevelFilter
+      level: INFO
+    leq_warning:
+      (): squadmakers.challenge.utils.logging.filters.LevelFilter
+      level: WARNING
+  handlers:
+    stdout:
+      class: logging.StreamHandler
+      formatter: colored
+      level: INFO
+      filters: [leq_info]
+      stream: ext://sys.stdout
+    stdwarn:
+      class: logging.StreamHandler
+      formatter: colored
+      level: WARNING
+      filters: [leq_warning]
+      stream: ext://sys.stderr
+    stderr:
+      class: logging.StreamHandler
+      formatter: colored
+      level: ERROR
+      stream: ext://sys.stderr
+  root:
+    level: INFO
+    handlers: [stdout, stdwarn, stderr]
