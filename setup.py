@@ -20,7 +20,7 @@ setup(
     install_requires=[
         "flask~=2.2.3",
         "SQLAlchemy~=2.0.9",
-        " psycopg2-binary~=2.9.6",
+        "psycopg2-binary~=2.9.6",
         "PyYAML~=6.0.0",
         "arrow~=1.2.3",
         "requests~=2.28.2",
