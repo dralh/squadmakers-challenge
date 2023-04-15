@@ -8,6 +8,7 @@ from werkzeug.exceptions import HTTPException
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from squadmakers.challenge.utils.web.flask.exc.handler import (
+    handle_any_error,
     handle_http_exception,
 )
 
@@ -63,6 +64,7 @@ class AppFactory:
 
         # Register error handlers
         app.register_error_handler(HTTPException, handle_http_exception)
+        app.register_error_handler(Exception, handle_any_error)
 
         @app.teardown_appcontext
         def cleanup(resp_or_exc):

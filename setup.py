@@ -23,6 +23,7 @@ setup(
         " psycopg2-binary~=2.9.6",
         "PyYAML~=6.0.0",
         "arrow~=1.2.3",
+        "requests~=2.28.2",
     ],
     extras_require={
         "dev": ["pytest~=7.3.1", "black~=23.3.0", "isort~=5.12.0"],
