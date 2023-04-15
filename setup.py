@@ -24,9 +24,11 @@ setup(
         "PyYAML~=6.0.0",
         "arrow~=1.2.3",
         "requests~=2.28.2",
+        "coloredlogs~=15.0.1",
     ],
     extras_require={
-        "dev": ["pytest~=7.3.1", "black~=23.3.0", "isort~=5.12.0"],
+        "dev": ["black~=23.3.0", "isort~=5.12.0"],
+        "test": ["pytest~=7.3.1"],
     },
     package_data={},
     python_requires=">=3.10",
