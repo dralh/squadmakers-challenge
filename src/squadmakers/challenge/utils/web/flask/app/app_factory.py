@@ -59,8 +59,11 @@ class AppFactory:
             getLogger(__name__).info("Loaded config " + str(config))
 
         # Register blueprints
+        main_blueprint = Blueprint("api", __name__, url_prefix="/api")
         for b in self.blueprints:
-            app.register_blueprint(b)
+            main_blueprint.register_blueprint(b)
+
+        app.register_blueprint(main_blueprint)
 
         # Register error handlers
         app.register_error_handler(HTTPException, handle_http_exception)
