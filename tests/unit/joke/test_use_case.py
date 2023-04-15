@@ -1,5 +1,6 @@
 import pytest
 
+from squadmakers.challenge.modules.joke.exc import JokeNotFoundException
 from squadmakers.challenge.modules.joke.use_case import JokeUseCase
 
 from .fake_repository import NotFoundFakeRepository, SuccessfulFakeRepository
@@ -19,7 +20,7 @@ def test_get_joke_by_id_failed():
     repository = NotFoundFakeRepository()
     use_case = JokeUseCase(repository)
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(JokeNotFoundException):
         joke = use_case.get_joke_by_id(1)
 
 
@@ -57,7 +58,7 @@ def test_edit_joke_failed():
     repository = NotFoundFakeRepository()
     use_case = JokeUseCase(repository)
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(JokeNotFoundException):
         use_case.edit_joke(1, "a basic joke 2")
 
 
@@ -72,5 +73,5 @@ def test_delete_joke_failed():
     repository = NotFoundFakeRepository()
     use_case = JokeUseCase(repository)
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(JokeNotFoundException):
         use_case.delete_joke(1)

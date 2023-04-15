@@ -1,4 +1,5 @@
 from squadmakers.challenge.modules.joke.db.repository import JokeRepository
+from squadmakers.challenge.modules.joke.exc import JokeNotFoundException
 from squadmakers.challenge.modules.joke.model import Joke
 
 __all__ = ["JokeUseCase"]
@@ -18,7 +19,7 @@ class JokeUseCase:
         joke = self.repository.get_joke_by_id(joke_id)
 
         if not joke:
-            raise RuntimeError("Joke not found")
+            raise JokeNotFoundException("Joke not found")
 
         return joke
 
@@ -32,7 +33,7 @@ class JokeUseCase:
         joke = self.repository.get_joke_by_id(joke_id)
 
         if not joke:
-            raise RuntimeError("Joke not found")
+            raise JokeNotFoundException("Joke not found")
 
         joke.content = content
         self.repository.save_joke(joke)
@@ -42,6 +43,6 @@ class JokeUseCase:
         joke = self.repository.get_joke_by_id(joke_id)
 
         if not joke:
-            raise RuntimeError("Joke not found")
+            raise JokeNotFoundException("Joke not found")
 
         self.repository.delete_joke(joke)
